@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat with PDF</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+    .chat-container {
+      width: 600px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    .chat-box {
+      height: 400px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+    }
+    .message {
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 6px;
+      max-width: 70%;
+    }
+    .user {
+      background: #007bff;
+      color: white;
+      margin-left: auto;
+    }
+    .bot {
+      background: #e4e6eb;
+      color: #333;
+      margin-right: auto;
+    }
+    .input-box {
+      display: flex;
+    }
+    .input-box input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px 0 0 8px;
+    }
+    .input-box button {
+      padding: 10px 20px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <h2>Chatting with: {{ filename }}</h2>
+    <div class="chat-box">
+      {% for user, bot in history %}
+        <div class="message user">{{ user }}</div>
+        <div class="message bot">{{ bot }}</div>
+      {% endfor %}
+    </div>
+    <form action="/chat" method="POST" class="input-box">
+      <input type="text" name="message" placeholder="Ask a question..." required>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</body>
+</html>
